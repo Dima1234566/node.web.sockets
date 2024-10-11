@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 3000 });
 
 wss.on('connection', (ws) => {
   ws.on('message', (message) => {
@@ -15,4 +15,4 @@ wss.on('connection', (ws) => {
   ws.send('Welcome to the chat!');
 });
 
-console.log('WebSocket server is running on ws://localhost:8080');
+console.log('WebSocket server is running on ws://localhost:3000');

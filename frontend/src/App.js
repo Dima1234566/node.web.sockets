@@ -7,7 +7,7 @@ function App() {
   const ws = useRef(null);
 
   useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:8080');
+    ws.current = new WebSocket('ws://localhost:3000');
 
     ws.current.onmessage = (event) => {
       setMessages((prevMessages) => [...prevMessages, event.data]);
