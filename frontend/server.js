@@ -1,10 +1,9 @@
-const WebSocket = require('ws');
+const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 3000 });
+const wss = new WebSocket.Server({ port: 4000 });
 
-wss.on('connection', (ws) => {
-  ws.on('message', (message) => {
-    // Broadcast message to all clients
+wss.on("connection", (ws) => {
+  ws.on("message", (message) => {
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(message);
@@ -12,7 +11,7 @@ wss.on('connection', (ws) => {
     });
   });
 
-  ws.send('Welcome to the chat!');
+  ws.send("Welcome to the chat!");
 });
 
-console.log('WebSocket server is running on ws://localhost:3000');
+console.log("WebSocket server is running on ws://localhost:4000");

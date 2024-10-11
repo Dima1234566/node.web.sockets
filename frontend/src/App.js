@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./App.css";
 
 function App() {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const ws = useRef(null);
 
   useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:3000');
+    ws.current = new WebSocket("ws://localhost:4000");
 
     ws.current.onmessage = (event) => {
+      console.log(event.data);
       setMessages((prevMessages) => [...prevMessages, event.data]);
     };
 
@@ -21,7 +22,7 @@ function App() {
   const sendMessage = () => {
     if (input.trim()) {
       ws.current.send(input);
-      setInput('');
+      setInput("");
     }
   };
 
@@ -31,14 +32,16 @@ function App() {
         <h1>WebSocket Chat</h1>
         <div className="chat-box">
           {messages.map((msg, index) => (
-            <div key={index} className="chat-message">{msg}</div>
+            <div key={index} className="chat-message">
+              {msg}
+            </div>
           ))}
         </div>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
         />
         <button onClick={sendMessage}>Send</button>
       </header>
