@@ -21,10 +21,22 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/mongoose": "^10.0.10",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/platform-socket.io": "^10.4.4",
+    "@nestjs/swagger": "^7.4.2",
+    "@nestjs/websockets": "^10.4.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.1",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
