@@ -1,31 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
 import "./App.css";
+
+const socket = io("ws://localhost:4000");
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const ws = useRef(null);
 
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:4000");
-
-    ws.current.onmessage = (event) => {
-      console.log(event.data);
-      setMessages((prevMessages) => [...prevMessages, event.data]);
-    };
+    socket.on("message", (message) => {
+      console.log(message);
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
 
     return () => {
-      ws.current.close();
+      socket.off("massage");
     };
   }, []);
 
   const sendMessage = () => {
     if (input.trim()) {
-      ws.current.send(input);
+      socket.emit("massage", input);
+
       setInput("");
     }
   };
-
+  console.log(messages);
   return (
     <div className="App">
       <header className="App-header">
