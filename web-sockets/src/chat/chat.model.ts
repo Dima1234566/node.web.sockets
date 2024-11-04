@@ -8,15 +8,15 @@ export type ChatDocument = Chat & Document;
 @Schema({ versionKey: false, timestamps: true })
 export class Chat extends Model<Chat> {
     @ApiProperty({ example: '12312412qfasf3r', description: "text" })
-    @Prop({ type: String })
+    @Prop({ type: String, required: true })
     owner: string
 
     @ApiProperty({ example: 'photo', description: "url/path" })
     @Prop({ type: String })
-    img: string
+    img?: string
 
     @ApiProperty({ example: 'from vasya - aqwtrqwetqefxafsf', description: "text message" })
-    @Prop({ type: String })
+    @Prop({ type: String, required: true })
     text: string
 }
 
